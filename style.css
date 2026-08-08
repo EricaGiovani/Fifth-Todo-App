@@ -82,6 +82,8 @@ header{
   width:1000px;
   padding:12px;
   box-sizing:border-box;
+  border-radius:10px;
+  border:1px solid var(--paragraph-color);
 }
 
 .form-3 textarea {
@@ -90,6 +92,8 @@ header{
   box-sizing: border-box;
   padding:12px;
   resize:none;
+  border-radius:10px;
+  border:1px solid var(--paragraph-color);
 }
 
 .form-2 input,
@@ -97,4 +101,20 @@ header{
   width:250px;
   padding:12px;
   box-sizing:border-box;
+  border-radius:10px;
+  border:1px solid var(--paragraph-color);
+}
+
+.button-activities #add-activities{
+  display:block;
+  padding:12px;
+  width:600px;
+  background-color:var(--yellow-color);
+  border:1px solid var(--yellow-color);
+  border-radius: 15px;
+  font-family:var(--font-family);
+  margin:30px auto 0;
+  color:var(--paragraph-color);
+  font-weight:600;
+  font-size:15px;
 }
