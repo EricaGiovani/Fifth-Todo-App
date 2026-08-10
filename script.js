@@ -48,3 +48,18 @@ function render(){
     taskList.appendChild(cardActivity);
   });
 }
+
+buttonInput.addEventListener('click', () => {
+  const title = titleInput.value;
+  const date = dateInput.value;
+  const description = descriptionInput.value;
+  const time = timeInput.value;
+
+  const newTodo = new Todo(title, date, description, time);
+
+  todoList.addTodo(newTodo);
+
+  render();
+});
+
+render();
