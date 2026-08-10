@@ -68,6 +68,11 @@ buttonInput.addEventListener('click', () => {
   todoList.addTodo(newTodo);
 
   render();
+
+  titleInput.value = "";  
+  dateInput.value = "";  
+  descriptionInput.value = "";  
+  timeInput.value = "";
 });
 
 render();
