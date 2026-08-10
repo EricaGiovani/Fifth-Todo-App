@@ -26,6 +26,7 @@ const dateInput = document.querySelector('#date');
 const descriptionInput = document.querySelector('#description');
 const timeInput = document.querySelector('#time');
 const buttonInput = document.querySelector('#add-activities');
+const taskList = document.querySelector('#task-list');
 
 const todoList = new TodoList();
 
@@ -44,6 +45,13 @@ function render(){
       <span>${activity.time}</span>
     </div>
     `;
+
+    const checkbox = cardActivity.querySelector('input');
+    const deleteButton = cardActivity.querySelector('button');
+
+    deleteButton.addEventListener('click', () => {
+      todoList.deleteTodo(index);
+    });
 
     taskList.appendChild(cardActivity);
   });
