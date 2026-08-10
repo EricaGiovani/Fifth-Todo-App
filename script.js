@@ -37,6 +37,11 @@ const todoList = new TodoList();
 function render(){
   taskList.innerHTML = "";
 
+  if (todoList.todos.length === 0){
+    taskList.textContent = "No tasks yet. Add your first activity!"
+    return;
+  }
+
   todoList.todos.forEach((activity,index) => {
     const cardActivity = document.createElement('div');
 
