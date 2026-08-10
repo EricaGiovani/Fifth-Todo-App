@@ -6,6 +6,7 @@ class Todo{
     this.date = date;
     this.description = description;
     this.time = time;
+    this.completed = false;
   }
 }
 
@@ -18,6 +19,9 @@ class TodoList{
   }
   deleteTodo(index){
     this.todos.splice(index,1);
+  }
+  toggleComplete(index){
+    this.todos[index].completed = !this.todos[index].completed;
   }
 }
 
@@ -38,9 +42,9 @@ function render(){
 
     cardActivity.innerHTML = `
     <h3>${activity.title}</h3>
-    <p>${activity.description}</p>
+    <p class="${activity.completed ? 'completed' : ''}">${activity.description}</p>
     <div>
-      <input type="checkbox">
+      <input type="checkbox" ${activity.completed ? 'checked' : ''}>
       <button>Delete</button>
       <span>${activity.time}</span>
     </div>
@@ -51,6 +55,12 @@ function render(){
 
     deleteButton.addEventListener('click', () => {
       todoList.deleteTodo(index);
+      render();
+    });
+
+    checkbox.addEventListener('click', () => {
+      todoList.toggleComplete(index);
+      render();
     });
 
     taskList.appendChild(cardActivity);
@@ -62,6 +72,11 @@ buttonInput.addEventListener('click', () => {
   const date = dateInput.value;
   const description = descriptionInput.value;
   const time = timeInput.value;
+
+  if (!title || !date || !description || !time){
+    alert('Please fill in the fields!');
+    return;
+  }
 
   const newTodo = new Todo(title, date, description, time);
 
