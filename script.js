@@ -36,19 +36,21 @@ const todoList = new TodoList();
 
 function render(){
   taskList.innerHTML = "";
+  taskList.classList.remove('empty-task');
 
   if (todoList.todos.length === 0){
-    taskList.textContent = "No tasks yet. Add your first activity!"
-    return;
+    taskList.innerHTML = `
+    <p class="empty-task">No tasks yet. Add your first activity!</p>`;
   }
 
   todoList.todos.forEach((activity,index) => {
     const cardActivity = document.createElement('div');
+    cardActivity.classList.add('task-card');
 
     cardActivity.innerHTML = `
-    <h3>${activity.title}</h3>
+    <h3 class="${activity.completed ? 'completed' : ''}">${activity.title}</h3>
     <p class="${activity.completed ? 'completed' : ''}">${activity.description}</p>
-    <div>
+    <div class="task-actions">
       <input type="checkbox" ${activity.completed ? 'checked' : ''}>
       <button>Delete</button>
       <span>${activity.time}</span>
