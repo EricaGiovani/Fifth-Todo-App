@@ -1,12 +1,12 @@
 'use strict';
 
 class Todo{
-  constructor(title,date,description,time){
+  constructor(title,date,description,time,completed = false){
     this.title = title;
     this.date = date;
     this.description = description;
     this.time = time;
-    this.completed = false;
+    this.completed = completed;
   }
 }
 
@@ -95,4 +95,14 @@ buttonInput.addEventListener('click', () => {
   timeInput.value = "";
 });
 
+async function loadTodos(){
+  try{
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const data = await response.json();
+    console.log(data);
+  }catch (error){
+    console.log(error);
+  }
+}
 render();
+loadTodos();
