@@ -34,6 +34,10 @@ const taskList = document.querySelector('#task-list');
 
 const todoList = new TodoList();
 
+function saveTodos(){
+  localStorage.setItem('todos', JSON.stringify(todoList.todos));
+}
+
 function render(){
   taskList.innerHTML = "";
   taskList.classList.remove('empty-task');
@@ -88,6 +92,7 @@ buttonInput.addEventListener('click', () => {
   const newTodo = new Todo(title, date, description, time);
 
   todoList.addTodo(newTodo);
+  saveTodos();
 
   render();
 
@@ -106,5 +111,28 @@ async function loadTodos(){
     console.log(error);
   }
 }
+
+function loadTodosFromStorage(){
+  const savedTodos = localStorage.getItem('todos');
+  if(!savedTodos){
+    return;
+  }
+
+  const todos = JSON.parse(savedTodos);
+
+  todos.forEach((todo) => {
+    todoList.addTodo(
+      new Todo(
+        todo.title,
+        todo.date,
+        todo.description,
+        todo.time,
+        todo.completed
+      )
+    );
+  });
+}
+
+loadTodosFromStorage();
 render();
 loadTodos();
